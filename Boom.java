@@ -30,7 +30,7 @@ class Timer extends Thread{
  public void run() {
   int n=0; 
   while(true) {
-   la.setText("ì‹œê°„: "+Integer.toString(n));
+   la.setText("½Ã°£: "+Integer.toString(n));
    try {
     sleep(1000);
     if(flag == true)
@@ -56,10 +56,10 @@ public class Boom extends JFrame{
  Container c = new Container();
  
  public Boom() {
-  setTitle("ì§€ë¢°ì°¾ê¸°");
+  setTitle("Áö·ÚÃ£±â");
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   
-  bnum.setText("ì§€ë¢°: "+Integer.toString(Bnum));
+  bnum.setText("Áö·Ú: "+Integer.toString(Bnum));
   bnum.setFont(new Font("Gothic",Font.BOLD,30));
   la.setFont(new Font("Gothic",Font.BOLD,30));
   
@@ -81,7 +81,7 @@ public class Boom extends JFrame{
   start.addActionListener(new MyActionListener());
   exit.addActionListener(new MyActionListener());
   
-  c.setLayout(new GridLayout(15,15)); //15í–‰15ì—´
+  c.setLayout(new GridLayout(15,15)); //15Çà15¿­
   
   for(int i=0; i<button.length; i++) {
    for(int j=0; j<button[i].length; j++) {
@@ -96,14 +96,14 @@ public class Boom extends JFrame{
      public void mousePressed(MouseEvent e) {
       if(SwingUtilities.isRightMouseButton(e)){
        if(button[finI][finJ].getText().equals(" ")) { 
-        button[finI][finJ].setText("â–¶"); 
+        button[finI][finJ].setText("¢º"); 
         Bnum--;
-           } else if (button[finI][finJ].getText().equals("â–¶")){ 
+           } else if (button[finI][finJ].getText().equals("¢º")){ 
             button[finI][finJ].setText(" "); 
            Bnum++;
            } 
       }
-      bnum.setText("ì§€ë¢°: "+Integer.toString(Bnum));
+      bnum.setText("Áö·Ú: "+Integer.toString(Bnum));
      }
      
     });
@@ -138,39 +138,39 @@ public class Boom extends JFrame{
   setSize(730,730);
   setVisible(true);
  }
- //ëœë¤ìœ¼ë¡œ ì§€ë¢°ì™€ ì¸ì ‘í•œì§€ë¢°ê°œìˆ˜ë¥¼ ì•Œë ¤ì£¼ëŠ” ì •ë³´ ë„£ê¸°
+ //·£´ıÀ¸·Î Áö·Ú¿Í ÀÎÁ¢ÇÑÁö·Ú°³¼ö¸¦ ¾Ë·ÁÁÖ´Â Á¤º¸ ³Ö±â
  void makeRandom() {
   ArrayList<Integer> list = new ArrayList<Integer>();
   for(int i=0; i<counts.length; i++) {
    for(int j=0; j<counts[i].length; j++)
     list.add(i*100+j); 
   }
-  counts = new int[20][20]; //ìƒˆë¡œìš´ ê²Œì„ì„ ìœ„í•´ ì¹´ìš´íŠ¸ë¥¼ ì´ˆê¸°í™”í•´ì¤€ë‹¤
+  counts = new int[20][20]; //»õ·Î¿î °ÔÀÓÀ» À§ÇØ Ä«¿îÆ®¸¦ ÃÊ±âÈ­ÇØÁØ´Ù
   for(int i=0; i<Bnum; i++) { 
-   int choice = (int) (Math.random() * list.size()); //ë¦¬ìŠ¤íŠ¸ì˜ í¬ê¸°ë§Œí¼ ëœë¤ìœ¼ë¡œ ë‚˜ì˜¤ê²Œí•¨(0~ë¦¬ìŠ¤íŠ¸ì˜í¬ê¸°)
+   int choice = (int) (Math.random() * list.size()); //¸®½ºÆ®ÀÇ Å©±â¸¸Å­ ·£´ıÀ¸·Î ³ª¿À°ÔÇÔ(0~¸®½ºÆ®ÀÇÅ©±â)
    counts[list.get(choice)/100][list.get(choice)%100] = boom;
-   list.remove(choice); //ì„ íƒí•œ ë¶€ë¶„ ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”(ê°™ì€ìë¦¬ê°€ ì§€ë¢°ë¡œ ì„ ì •ë˜ë©´ ì•ˆë˜ë¯€ë¡œ)
+   list.remove(choice); //¼±ÅÃÇÑ ºÎºĞ ¸®½ºÆ®¸¦ ÃÊ±âÈ­(°°ÀºÀÚ¸®°¡ Áö·Ú·Î ¼±Á¤µÇ¸é ¾ÈµÇ¹Ç·Î)
   }
-  //ì§€ë¢°ê°€ ì•„ë‹Œê²½ìš° ì¸ì ‘ì§€ë¢° ê°œìˆ˜
+  //Áö·Ú°¡ ¾Æ´Ñ°æ¿ì ÀÎÁ¢Áö·Ú °³¼ö
   for(int i=0; i<counts.length; i++) {
    for(int j=0; j<counts.length; j++) {
     int surround = 0;
     if(counts[i][j] != boom) {
-     if(j>0 &&counts[i][j-1] == boom) //ì§€ë¢°ê°€ ìœ„
+     if(j>0 &&counts[i][j-1] == boom) //Áö·Ú°¡ À§
       surround++;
-     if(j<counts[i].length-1 && counts[i][j+1] == boom) //ì§€ë¢°ê°€ ì•„ë˜
+     if(j<counts[i].length-1 && counts[i][j+1] == boom) //Áö·Ú°¡ ¾Æ·¡
       surround++;
-     if(i>0 && counts[i-1][j] == boom) //ì§€ë¢°ê°€ ì™¼ìª½ 
+     if(i>0 && counts[i-1][j] == boom) //Áö·Ú°¡ ¿ŞÂÊ 
       surround++;
-     if(i<counts.length-1 && counts[i+1][j] == boom) //ì§€ë¢°ê°€ ì˜¤ë¥¸ìª½
+     if(i<counts.length-1 && counts[i+1][j] == boom) //Áö·Ú°¡ ¿À¸¥ÂÊ
       surround++;
-     if(i>0 && j<counts.length-1 && counts[i-1][j+1] == boom) //ì§€ë¢°ê°€ ì™¼ìª½ì•„ë˜ëŒ€ê°ì„ 
+     if(i>0 && j<counts.length-1 && counts[i-1][j+1] == boom) //Áö·Ú°¡ ¿ŞÂÊ¾Æ·¡´ë°¢¼±
       surround++;
-     if(i>0 && j>0 && counts[i-1][j-1] == boom) //ì§€ë¢°ê°€ ì™¼ìª½ìœ„ëŒ€ê°ì„ 
+     if(i>0 && j>0 && counts[i-1][j-1] == boom) //Áö·Ú°¡ ¿ŞÂÊÀ§´ë°¢¼±
       surround++;
-     if(i<counts.length-1 && j<counts.length-1 && counts[i+1][j+1] == boom) //ì§€ë¢°ê°€ ì˜¤ë¥¸ìª½ì•„ë˜ëŒ€ê°ì„  
+     if(i<counts.length-1 && j<counts.length-1 && counts[i+1][j+1] == boom) //Áö·Ú°¡ ¿À¸¥ÂÊ¾Æ·¡´ë°¢¼± 
       surround++;
-     if(i<counts.length-1 && j>0 && counts[i+1][j-1] == boom) //ì§€ë¢°ê°€ ì˜¤ë¥¸ìª½ìœ„ëŒ€ê°ì„ 
+     if(i<counts.length-1 && j>0 && counts[i+1][j-1] == boom) //Áö·Ú°¡ ¿À¸¥ÂÊÀ§´ë°¢¼±
       surround++;
      
      counts[i][j] = surround;
@@ -180,18 +180,18 @@ public class Boom extends JFrame{
   }
  }
  
- //ê²Œì„ì—ì„œ ì¡Œì„ ë•Œ
+ //°ÔÀÓ¿¡¼­ Á³À» ¶§
   void lostGame(){
    for(int i=0; i<button.length; i++) {
     for(int j=0; j<button[i].length; j++) {
      if(button[i][j].isEnabled()) {
-      if(counts[i][j] != boom) //ì§€ë¢°ê°€ ì•„ë‹ ê²½ìš°
+      if(counts[i][j] != boom) //Áö·Ú°¡ ¾Æ´Ò °æ¿ì
        button[i][j].setText(Integer.toString(counts[i][j])); 
       
-      else  //ì§€ë¢°ì¼ ê²½ìš°
-       button[i][j].setText("â˜…");
+      else  //Áö·ÚÀÏ °æ¿ì
+       button[i][j].setText("¡Ú");
       
-      button[i][j].setEnabled(false); //ë¹„í™œì„±
+      button[i][j].setEnabled(false); //ºñÈ°¼º
       th.finish();
      }
     }
@@ -200,24 +200,24 @@ public class Boom extends JFrame{
  class MyActionListener implements ActionListener{
   @Override
   public void actionPerformed(ActionEvent e) {
-   //startë¥¼ ëˆŒë €ì„ ë•Œ
+   //start¸¦ ´­·¶À» ¶§
    if(e.getSource().equals(start)) {
     for(int i=0; i<button.length; i++) {
      for(int j=0; j< button.length; j++) {
       button[i][j].setEnabled(true);
       button[i][j].setText(" ");
       Bnum = 65;
-      bnum.setText("ì§€ë¢°: "+Integer.toString(Bnum));
+      bnum.setText("Áö·Ú: "+Integer.toString(Bnum));
      }
     }
     makeRandom();
     
    }
-   //ì§€ë¢°ì°¾ê¸° ê²Œì„ì¤‘ì¼ë•Œ
+   //Áö·ÚÃ£±â °ÔÀÓÁßÀÏ¶§
    else { 
          for (int i = 0; i < button.length ; i++) { 
           for (int j = 0; j < button[i].length; j++) { 
-         if(e.getSource().equals(button[i][j])) {  //ì§€ë¢°ì°¾ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
+         if(e.getSource().equals(button[i][j])) {  //Áö·ÚÃ£±â ¹öÆ°À» ´­·¶À» ¶§
             if (counts[i][j]== boom) { 
              lostGame(); 
             } 
@@ -236,4 +236,3 @@ public class Boom extends JFrame{
  }
 
 }
- 
